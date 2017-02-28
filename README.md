@@ -7,12 +7,12 @@ operators out of the package and the encourages further extensions.
 FEATURES
 --------
 The library supports the following features:
-(1) Floating-point numbers/calculations 
-(2) Addition and subtraction operators 
-(3) Multiplication and division operators 
-(4) Modulo operator (division remainder) 
-(5) Negation 
-(6) Redundant positive signs 
+(1) Floating-point numbers/calculations
+(2) Addition and subtraction operators
+(3) Multiplication and division operators
+(4) Modulo operator (division remainder)
+(5) Negation
+(6) Redundant positive signs
 (7) Summation operator (Σ) 
 (8) Product operator (Π) 
 (9) Constants
