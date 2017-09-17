@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * An object from this class is used to encapsulate a recently recognized
  * (matched) node, along with the meta data of the matching process.
- * 
+ *
  * @author Haitham Seada
  */
 public class NodeRecognizedInfo {
@@ -49,6 +49,7 @@ public class NodeRecognizedInfo {
 
     /**
      * Gets the list of tokens representing child(index)
+     *
      * @param index The index of the child whose tokens are being retrieved
      * @return The list of tokens representing the designated child
      */
@@ -58,6 +59,7 @@ public class NodeRecognizedInfo {
 
     /**
      * Gets the number of children the recognized node is expected to have.
+     *
      * @return number of expected children which is equal to the number of lists
      * stored in childrenTokensLists.
      */
@@ -73,6 +75,7 @@ public class NodeRecognizedInfo {
      * Gets the index of the first token representing the recognized node within
      * the number of tokens being parsed (need not be the index within all the
      * tokens of the whole expression).
+     *
      * @return The index of the first representing token.
      */
     public int getStartTokenIndex() {
@@ -83,6 +86,7 @@ public class NodeRecognizedInfo {
      * Gets the index of the last token representing the recognized node within
      * the number of tokens being parsed (need not be the index within all the
      * tokens of the whole expression).
+     *
      * @return The index of the last representing token.
      */
     public int getEndTokenIndex() {
@@ -94,5 +98,37 @@ public class NodeRecognizedInfo {
      */
     public AbstractNode getNode() {
         return node;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        NodeRecognizedInfo other = (NodeRecognizedInfo) obj;
+        if (this.startTokenIndex != other.startTokenIndex
+                || this.endTokenIndex != other.endTokenIndex) {
+            return false;
+        }
+        if (this.childrenTokensLists != null && this.childrenTokensLists != null) {
+            if (this.getChildrenCount() != other.getChildrenCount()) {
+                return false;
+            }
+            for (int i = 0; i < this.childrenTokensLists.size(); i++) {
+                for (int j = 0; j < this.childrenTokensLists.get(i).size(); j++) {
+                    if (!childrenTokensLists.get(i).get(j).equals(
+                            other.childrenTokensLists.get(i).get(j))) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 }

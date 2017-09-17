@@ -364,7 +364,7 @@ public class MathExpressionParser {
      * Displays all the levels in order from highest precedence to lowest
      * precedence.
      */
-    public static void displayLevels() {
+    public static String displayLevels() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < levels.size(); i++) {
             Set<Class<? extends AbstractNode>> level = levels.get(i);
@@ -378,6 +378,8 @@ public class MathExpressionParser {
             }
             sb.append(String.format("%n"));
         }
-        System.out.println(sb.toString());
+        String result = sb.toString();
+        System.out.println(result);
+        return result;
     }
 }

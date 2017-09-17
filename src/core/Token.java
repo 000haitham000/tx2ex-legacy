@@ -5,6 +5,8 @@
  */
 package core;
 
+import java.util.Objects;
+
 /**
  *
  * @author haitham
@@ -62,5 +64,34 @@ public class Token {
      */
     public void setRecognized(boolean recognized) {
         this.recognized = recognized;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 59 * hash + Objects.hashCode(this.tokenString);
+        hash = 59 * hash + this.type;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Token other = (Token) obj;
+        if (this.type != other.type) {
+            return false;
+        }
+        if (!Objects.equals(this.tokenString, other.tokenString)) {
+            return false;
+        }
+        return true;
     }
 }

@@ -14,6 +14,7 @@ import java.util.List;
 import core.Token;
 import core.Utils;
 import exceptions.EvaluationException;
+import java.util.Objects;
 
 /**
  *
@@ -42,7 +43,7 @@ public class VariableNode extends AbstractNode {
     @Override
     public double evaluate() throws IdentifierNotFoundException {
         Double identifierValue = varManager.get(varLabel);
-        if(identifierValue == null) {
+        if (identifierValue == null) {
             throw new IdentifierNotFoundException(this, "Variable not found.");
         } else {
             return identifierValue;
@@ -78,5 +79,30 @@ public class VariableNode extends AbstractNode {
         }
         // Return null if the operator was not found
         return null;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final VariableNode other = (VariableNode) obj;
+        if (this.varLabel != other.varLabel) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 59 * hash + Objects.hashCode(this.varLabel);
+        return hash;
     }
 }

@@ -430,7 +430,7 @@ public class Utils {
                     modified = true;
                     System.out.println("Expression altered to reflect the "
                             + "effect of a negative sign following a binary "
-                            + "operator  operator.");
+                            + "operator.");
                     break;
                 }
             }
@@ -463,5 +463,19 @@ public class Utils {
      */
     public static boolean isIdentifier(Token token) {
         return token.getString().matches("[a-zA-Z_$][a-zA-Z\\d_$]*");
+    }
+
+    /**
+     * Parses the parameter string into a double array.
+     * @param csv comma separated values
+     * @return a double array
+     */
+    public static double[] getNumArrayFromCSV(String csv) {
+        String[] splits = csv.split(",");
+        double[] arr = new double[splits.length];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = Double.parseDouble(splits[i].trim());
+        }
+        return arr;
     }
 }
