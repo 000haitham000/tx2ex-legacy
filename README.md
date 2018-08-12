@@ -1,4 +1,4 @@
-TX2EX Version 2.0.0 - 2/27/2017
+TX2EX Version 2.0.1 - 8/12/2018
 ------------------------------
 TX2EX is an open source library intended to help programmers parse and evaluate
 their textual mathematical expressions. The library supports a wide-range of
