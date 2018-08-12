@@ -5,6 +5,7 @@
  */
 package core;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -13,7 +14,7 @@ import java.util.Map;
  *
  * @author haitham
  */
-public class VariablesManager {
+public class VariablesManager implements Serializable {
 
     // Vectors
     private final Map<String, double[]> vectors;

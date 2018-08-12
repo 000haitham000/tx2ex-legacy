@@ -5,13 +5,14 @@
  */
 package core;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author haitham
  */
-public class Token {
+public class Token implements Serializable {
     
     /**
      * A constant used to mark tokens representing valid identifiers.

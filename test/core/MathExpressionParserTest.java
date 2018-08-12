@@ -243,6 +243,447 @@ public class MathExpressionParserTest {
     }
 
     /**
+     * Test of summation-power precedence.
+     */
+    @Test
+    public void testSummationPowerPrecedence1()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            NoSuchMethodException,
+            Throwable {
+        double epsilon = 1e-10;
+        System.out.println("\tTesting Summation-Power Precedence 1:");
+        assertEquals(81, MathExpressionParser.parse(
+                "sum{i, 2, 4, i}^2", vm).evaluate(), epsilon);
+    }
+
+    /**
+     * Test of summation-power precedence.
+     */
+    @Test
+    public void testSummationPowerPrecedence2()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            NoSuchMethodException,
+            Throwable {
+        double epsilon = 1e-10;
+        System.out.println("\tTesting Summation-Power Precedence 2:");
+        assertEquals(29, MathExpressionParser.parse(
+                "sum{i, 2, 4, i^2}", vm).evaluate(), epsilon);
+    }
+
+    /**
+     * Test of parsing nested curly bracket operators.
+     */
+    @Test
+    public void testParsingNestedCurly1()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            NoSuchMethodException,
+            Throwable {
+        double epsilon = 1e-10;
+        System.out.println("\tTesting Nested Curly Bracket Operators 1:");
+        assertEquals(162, MathExpressionParser.parse(
+                "sum{i, 2, 4, sum{j, 5, 7, i*j}}", vm).evaluate(), epsilon);
+    }
+
+    /**
+     * Test of parsing nested curly bracket operators.
+     */
+    @Test
+    public void testParsingNestedCurly2()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            NoSuchMethodException,
+            Throwable {
+        double epsilon = 1e-10;
+        System.out.println("\tTesting Nested Curly Bracket Operators 2:");
+        assertEquals(972, MathExpressionParser.parse(
+                "sum{i, 2, 4, sum{j, 5, 7, i*j} * 2} * 3", vm).evaluate(), epsilon);
+    }
+
+    /**
+     * Test of parsing nested curly bracket operators.
+     */
+    @Test
+    public void testParsingNestedCurly3()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            NoSuchMethodException,
+            Throwable {
+        double epsilon = 1e-10;
+        System.out.println("\tTesting Nested Curly Bracket Operators 3:");
+        assertEquals(46, MathExpressionParser.parse(
+                "sum{k, 1, 2, sum{i, 2, 4, i} + sum{j, 2, 5, j}}",
+                vm).evaluate(), epsilon);
+    }
+
+    /**
+     * Test of parsing nested curly bracket operators.
+     */
+    @Test
+    public void testParsingNestedCurly4()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            NoSuchMethodException,
+            Throwable {
+        double epsilon = 1e-10;
+        System.out.println("\tTesting Nested Curly Bracket Operators 4:");
+        assertEquals(76, MathExpressionParser.parse(
+                "sum{k, 1, 2, prod{i, 2, 4, i} + sum{j, 2, 5, j}}",
+                vm).evaluate(), epsilon);
+    }
+
+    /**
+     * Test of parsing nested curly bracket operators.
+     */
+    @Test
+    public void testParsingNestedCurly5()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            NoSuchMethodException,
+            Throwable {
+        double epsilon = 1e-10;
+        System.out.println("\tTesting Nested Curly Bracket Operators 5:");
+        assertEquals(1444, MathExpressionParser.parse(
+                "prod{k, 1, 2, prod{i, 2, 4, i} + sum{j, 2, 5, j}}",
+                vm).evaluate(), epsilon);
+    }
+
+    /**
+     * Test of parsing nested operators.
+     */
+    @Test
+    public void testParsingNested1()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            NoSuchMethodException,
+            Throwable {
+        double epsilon = 1e-10;
+        System.out.println("\tTesting Nested 1:");
+        assertEquals(25, MathExpressionParser.parse(
+                "max(prod{i, 2, 4, i}, sum{j, 7, 9, j} +1)",
+                vm).evaluate(), epsilon);
+    }
+
+    /**
+     * Test of parsing nested operators.
+     */
+    @Test
+    public void testParsingNested2()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            NoSuchMethodException,
+            Throwable {
+        double epsilon = 1e-10;
+        System.out.println("\tTesting Nested 2:");
+        assertEquals(24, MathExpressionParser.parse(
+                "min(prod{i, 2, 4, i}, sum{j, 7, 9, j} +1)",
+                vm).evaluate(), epsilon);
+    }
+
+    /**
+     * Test of parsing nested operators.
+     */
+    @Test
+    public void testParsingNested3()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            NoSuchMethodException,
+            Throwable {
+        double epsilon = 1e-10;
+        System.out.println("\tTesting Nested 3:");
+        assertEquals(23, MathExpressionParser.parse(
+                "min(prod{i, 2, 4, i}, sum{j, 7, 9, j}-  1)",
+                vm).evaluate(), epsilon);
+    }
+
+    /**
+     * Test of parsing nested operators.
+     */
+    @Test
+    public void testParsingNested4()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            NoSuchMethodException,
+            Throwable {
+        double epsilon = 1e-10;
+        System.out.println("\tTesting Nested 4:");
+        assertEquals(8, MathExpressionParser.parse(
+                "prod{i, 3, 7, max(i%3, (i+1)%3)}",
+                vm).evaluate(), epsilon);
+    }
+
+    /**
+     * Test of parsing nested operators.
+     */
+    @Test
+    public void testParsingNested5()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            NoSuchMethodException,
+            Throwable {
+        double epsilon = 1e-10;
+        System.out.println("\tTesting Nested 5:");
+        assertEquals(8, MathExpressionParser.parse(
+                "sum{i, 3, 7, max(i%3, (i+1)%3)}",
+                vm).evaluate(), epsilon);
+    }
+
+    /**
+     * Test summation with five arguments.
+     */
+    @Test
+    public void testFiveArgumentSummation1()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            NoSuchMethodException,
+            Throwable {
+        double epsilon = 1e-10;
+        System.out.println("\tTesting five argument summation 1:");
+        assertEquals(25, MathExpressionParser.parse(
+                "sum{i, 1, 9, 2, i}",
+                vm).evaluate(), epsilon);
+    }
+
+    /**
+     * Test product with five arguments.
+     */
+    @Test
+    public void testFiveArgumentProduct1()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            NoSuchMethodException,
+            Throwable {
+        double epsilon = 1e-10;
+        System.out.println("\tTesting five argument product 1:");
+        assertEquals(945, MathExpressionParser.parse(
+                "prod{i, 1, 9, 2, i}",
+                vm).evaluate(), epsilon);
+    }
+
+    /**
+     * Test summation with five arguments.
+     */
+    @Test
+    public void testFiveArgumentSummation2()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            NoSuchMethodException,
+            Throwable {
+        double epsilon = 1e-10;
+        System.out.println("\tTesting five argument summation 2:");
+        assertEquals(25, MathExpressionParser.parse(
+                "sum{i, 1, 10, 2, i}",
+                vm).evaluate(), epsilon);
+    }
+
+    /**
+     * Test product with five arguments.
+     */
+    @Test
+    public void testFiveArgumentProduct2()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            NoSuchMethodException,
+            Throwable {
+        double epsilon = 1e-10;
+        System.out.println("\tTesting five argument product 2:");
+        assertEquals(945, MathExpressionParser.parse(
+                "prod{i, 1, 10, 2, i}",
+                vm).evaluate(), epsilon);
+    }
+
+    /**
+     * Test summation with five arguments.
+     */
+    @Test
+    public void testFiveArgumentSummation3()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            NoSuchMethodException,
+            Throwable {
+        double epsilon = 1e-10;
+        System.out.println("\tTesting five argument summation 3:");
+        assertEquals(25, MathExpressionParser.parse(
+                "sum{i, 9, 1, -2, i}",
+                vm).evaluate(), epsilon);
+    }
+
+    /**
+     * Test product with five arguments.
+     */
+    @Test
+    public void testFiveArgumentProduct3()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            NoSuchMethodException,
+            Throwable {
+        double epsilon = 1e-10;
+        System.out.println("\tTesting five argument product 3:");
+        assertEquals(945, MathExpressionParser.parse(
+                "prod{i, 9, 1, -2, i}",
+                vm).evaluate(), epsilon);
+    }
+
+    /**
+     * Test summation with five arguments.
+     */
+    @Test
+    public void testFiveArgumentSummation4()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            NoSuchMethodException,
+            Throwable {
+        double epsilon = 1e-10;
+        System.out.println("\tTesting five argument summation 4:");
+        assertEquals(0, MathExpressionParser.parse(
+                "sum{i, 9, -9, -2, i}",
+                vm).evaluate(), epsilon);
+    }
+
+    /**
+     * Test product with five arguments.
+     */
+    @Test
+    public void testFiveArgumentProduct4()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            NoSuchMethodException,
+            Throwable {
+        double epsilon = 1e-10;
+        System.out.println("\tTesting five argument product 4:");
+        assertEquals(-893025, MathExpressionParser.parse(
+                "prod{i, 9, -9, -2, i}",
+                vm).evaluate(), epsilon);
+    }
+
+    /**
+     * Test summation with five arguments.
+     */
+    @Test
+    public void testFiveArgumentSummation5()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            NoSuchMethodException,
+            Throwable {
+        double epsilon = 1e-10;
+        System.out.println("\tTesting five argument summation 5:");
+        assertEquals(54, MathExpressionParser.parse(
+                "sum{i, 9, 2, -3, i * sum{j, 1, 2, j}}",
+                vm).evaluate(), epsilon);
+    }
+
+    /**
+     * Test summation with five arguments.
+     */
+    @Test
+    public void testFiveArgumentProduct5()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            NoSuchMethodException,
+            Throwable {
+        double epsilon = 1e-10;
+        System.out.println("\tTesting five argument product 5:");
+        assertEquals(34992, MathExpressionParser.parse(
+                "prod{i, 9, 2, -3, i * prod{j, 2, 3, j}}",
+                vm).evaluate(), epsilon);
+
+        AbstractNode node = MathExpressionParser.parse(
+                "prod{i, 9, 2, -3, i * prod{j, 2, 3, j}}",
+                vm);
+        System.out.println(node.toString());
+    }
+
+    /**
      * Test of parse method, of class MathExpressionParser for invalid variable
      * names.
      */
@@ -277,6 +718,149 @@ public class MathExpressionParserTest {
             Throwable {
         System.out.println("Testing MathExpressionParser:parse() for empty parentheses");
         MathExpressionParser.parse("()", vm);
+    }
+
+    /**
+     * Test the string representation of summation
+     */
+    @Test
+    public void testSummationStringRepresentation1()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            Throwable {
+        AbstractNode summation
+                = MathExpressionParser.parse("sum{a, 1, 20, a^b}", vm);
+        System.out.println(summation.toString());
+        System.out.println("Testing summation string representation 1");
+        assertEquals(
+                removeSpaces("Sum{a=[1.0,20.0],(a^b)}"),
+                removeSpaces(summation.toString()));
+    }
+
+    /**
+     * Test the string representation of summation
+     */
+    @Test
+    public void testSummationStringRepresentation2()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            Throwable {
+        AbstractNode summation
+                = MathExpressionParser.parse("sum{a, 1, 20, 2, a^b}", vm);
+        System.out.println(summation.toString());
+        System.out.println("Testing summation string representation 2");
+        assertEquals(
+                removeSpaces("Sum{a=[1.0,20.0],step=2.0,(a^b)}"),
+                removeSpaces(summation.toString()));
+    }
+
+    /**
+     * Test the string representation of product
+     */
+    @Test
+    public void testProductStringRepresentation1()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            Throwable {
+        AbstractNode summation
+                = MathExpressionParser.parse("prod{a, 1, 20, a^b}", vm);
+        System.out.println(summation.toString());
+        System.out.println("Testing product string representation 1");
+        assertEquals(
+                removeSpaces("Prod{a=[1.0,20.0],(a^b)}"),
+                removeSpaces(summation.toString()));
+    }
+
+    /**
+     * Test the string representation of product
+     */
+    @Test
+    public void testProductStringRepresentation2()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            Throwable {
+        AbstractNode summation
+                = MathExpressionParser.parse("prod{a, 1, 20, 2, a^b}", vm);
+        System.out.println(summation.toString());
+        System.out.println("Testing product string representation 2");
+        assertEquals(
+                removeSpaces("Prod{a=[1.0,20.0],step=2.0,(a^b)}"),
+                removeSpaces(summation.toString()));
+    }
+
+    /**
+     * Test the string representation of a nested expression
+     */
+    @Test
+    public void testNestedStringRepresentation1()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            Throwable {
+        AbstractNode summation
+                = MathExpressionParser.parse("sum{a, 10, 15, prod{b, 2, 5, 2, a^b}}", vm);
+        System.out.println(summation.toString());
+        System.out.println("Testing nested string representation 1");
+        assertEquals(
+                removeSpaces("Sum{a = [10.0, 15.0], Prod{b = [2.0, 5.0], step = 2.0, (a^b)}}"),
+                removeSpaces(summation.toString()));
+    }
+
+    /**
+     * Test the string representation of a nested expression
+     */
+    @Test
+    public void testNestedStringRepresentation2()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            Throwable {
+        AbstractNode summation
+                = MathExpressionParser.parse("prod{a, 10, 15, sum{b, 2, 5, 2, a^b}}", vm);
+        System.out.println(summation.toString());
+        System.out.println("Testing nested string representation 2");
+        assertEquals(
+                removeSpaces("Prod{a = [10.0, 15.0], Sum{b = [2.0, 5.0], step = 2.0, (a^b)}}"),
+                removeSpaces(summation.toString()));
+    }
+
+    /**
+     * Test the string representation of a nested expression
+     */
+    @Test
+    public void testNestedStringRepresentation3()
+            throws IllegalAccessException,
+            IllegalArgumentException,
+            TooManyDecimalPointsException,
+            MisplacedTokensException,
+            InvalidFormatException,
+            Throwable {
+        AbstractNode summation
+                = MathExpressionParser.parse(
+                        "prod{a, 15, 2, -3, sum{b, 2, 5, 2, a^b}}", vm);
+        System.out.println(summation.toString());
+        System.out.println("Testing nested string representation 3");
+        assertEquals(
+                removeSpaces(
+                        "Prod{a = [15.0, 2.0], step = (-3.0), "
+                        + "Sum{b = [2.0, 5.0], step = 2.0, (a^b)}}"),
+                removeSpaces(summation.toString()));
     }
 
     /**
@@ -318,5 +902,21 @@ public class MathExpressionParserTest {
                 + " Sum{i=[5.0,7.0],Prod{j=[1.0,2.0],(x[i] * y[j])}})))",
                 plus.toString());
         assertEquals(902975.2508456296, plus.evaluate(), 1e-10);
+    }
+
+    /**
+     * A utility function used to return a white-space-less version of text.
+     *
+     * @param text the text whose white spaces need to be removed
+     * @return a white-space-less version of (text)
+     */
+    private String removeSpaces(String text) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < text.length(); i++) {
+            if (!Character.isWhitespace(text.charAt(i))) {
+                sb.append(text.charAt(i));
+            }
+        }
+        return sb.toString();
     }
 }

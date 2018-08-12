@@ -10,6 +10,7 @@ import core.Token;
 import core.VariablesManager;
 import exceptions.EvaluationException;
 import exceptions.InvalidFormatException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import java.util.List;
  *
  * @author haitham
  */
-public abstract class AbstractNode {
+public abstract class AbstractNode implements Serializable {
 
     private AbstractNode parent;
     private final List<AbstractNode> children;
